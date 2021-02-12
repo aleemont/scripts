@@ -1,0 +1,17 @@
+				#!/bin/bash
+SCRIPT_FOLDER="$HOME/scripts"
+SCRIPT_FILE="$SCRIPT_FOLDER/$1"
+
+if [[ -f $SCRIPT_FILE ]]; then
+  nano $SCRIPT_FILE
+else
+  touch $SCRIPT_FILE
+  printf "#!/bin/bash\n" > $SCRIPT_FILE
+  echo $2 > $SCRIPT_FILE
+  chmod +x $SCRIPT_FILE
+  sudo ln $SCRIPT_FILE /usr/local/bin/$1
+ if [ "$3" == '-n' ]
+  then
+   nano $SCRIPT_FILE
+  fi
+fi
